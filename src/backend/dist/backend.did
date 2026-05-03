@@ -1,0 +1,99 @@
+type UserProfile = 
+ record {
+   certificates: vec Certificate;
+   isEnrolled: bool;
+   overallProgressPercentage: nat;
+   userId: UserId;
+ };
+type UserId = principal;
+type Timestamp = int;
+type ModuleWithLessons = 
+ record {
+   completedCount: nat;
+   lessons: vec LessonWithStatus;
+   module: Module;
+   totalCount: nat;
+ };
+type ModuleId = nat;
+type Module = 
+ record {
+   description: text;
+   id: ModuleId;
+   order: nat;
+   title: text;
+ };
+type LessonWithStatus = 
+ record {
+   completed: bool;
+   completedAt: opt Timestamp;
+   lesson: Lesson;
+ };
+type LessonId = nat;
+type Lesson = 
+ record {
+   content: text;
+   description: text;
+   difficulty: Difficulty;
+   durationMinutes: nat;
+   id: LessonId;
+   isHL: bool;
+   moduleId: ModuleId;
+   order: nat;
+   title: text;
+ };
+type Difficulty = 
+ variant {
+   Advanced;
+   Beginner;
+   Intermediate;
+ };
+type DashboardData = 
+ record {
+   completedLessons: nat;
+   completionPercentage: nat;
+   currentModuleId: opt ModuleId;
+   nextLessonId: opt LessonId;
+   totalLessons: nat;
+ };
+type CourseOverview = 
+ record {
+   description: text;
+   estimatedHours: nat;
+   title: text;
+   totalLessons: nat;
+   totalModules: nat;
+ };
+type CertificateLevel = 
+ variant {
+   HigherLevel;
+   StandardLevel;
+ };
+type CertificateId = text;
+type Certificate = 
+ record {
+   completedAt: Timestamp;
+   courseTitle: text;
+   id: CertificateId;
+   issuedAt: Timestamp;
+   learnerName: text;
+   level: CertificateLevel;
+   userId: UserId;
+ };
+service : {
+  completeLesson: (lessonId: LessonId, learnerName: text) ->
+   (variant {
+      certificateIssued: Certificate;
+      err: text;
+      ok;
+    });
+  enrollInCourse: () -> (variant {
+                           err: text;
+                           ok;
+                         });
+  getCertificate: () -> (opt Certificate) query;
+  getCourseOverview: () -> (CourseOverview) query;
+  getDashboard: () -> (opt DashboardData) query;
+  getModulesWithStatus: () -> (vec ModuleWithLessons) query;
+  getProgressHistory: () -> (vec LessonWithStatus) query;
+  getUserProfile: () -> (UserProfile) query;
+}

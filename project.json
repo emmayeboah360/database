@@ -1,0 +1,26 @@
+{
+  "overview": "A3 Databases is a standalone interactive learning website for the complete A3 Databases syllabus — covering relational database fundamentals, design (ERDs, normalization), SQL programming, and advanced Higher Level topics. Features live SQL editor, interactive ERD diagrams, normalization exercises, quizzes, progress tracking, and certificate generation.",
+  "features": [
+    "Live in-browser SQL editor with 4 sample databases (library, e-commerce, hospital, school)",
+    "Interactive ERD diagram viewer with cardinality and modality notation",
+    "Step-by-step normalization exercises (1NF → 2NF → 3NF) with instant feedback",
+    "End-of-lesson quizzes with instant right/wrong feedback and explanations",
+    "4 course modules covering full A3 syllabus (A3.1–A3.4)",
+    "Higher Level content clearly marked and gated",
+    "Progress tracking dashboard with per-module completion",
+    "Certificate generation on Standard Level and Higher Level completion"
+  ],
+  "category": "education",
+  "tags": [
+    "databases",
+    "education",
+    "sql",
+    "interactive",
+    "a3",
+    "ib",
+    "learning",
+    "erd",
+    "normalization"
+  ],
+  "last_updated": "2026-05-02T22:55:37.825Z"
+}

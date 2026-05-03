@@ -1,0 +1,140 @@
+// Version: 3.0.0
+type CertificateId__260966514 = CertificateId__417577722;
+type CertificateId__417577722 = Text;
+type CertificateLevel__422685469 = {#HigherLevel; #StandardLevel};
+type Certificate__394144600 = Certificate__77991033;
+type Certificate__77991033 =
+  {
+    completedAt : Timestamp__475544177;
+    courseTitle : Text;
+    id : CertificateId__260966514;
+    issuedAt : Timestamp__475544177;
+    learnerName : Text;
+    level : CertificateLevel__422685469;
+    userId : UserId__189245808
+  };
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Difficulty__149633172 = {#Advanced; #Beginner; #Intermediate};
+type Enrollment__143286211 = Enrollment__985721389;
+type Enrollment__985721389 =
+  {enrolledAt : Timestamp__475544177; userId : UserId__189245808};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type LessonCompletion__216170458 = LessonCompletion__523210666;
+type LessonCompletion__523210666 =
+  {completedAt : Timestamp__475544177; lessonId : LessonId__630646416};
+type LessonId__21783266 = Nat;
+type LessonId__630646416 = LessonId__21783266;
+type Lesson__322158826 = Lesson__614066086;
+type Lesson__614066086 =
+  {
+    content : Text;
+    description : Text;
+    difficulty : Difficulty__149633172;
+    durationMinutes : Nat;
+    id : LessonId__630646416;
+    isHL : Bool;
+    moduleId : ModuleId__167356749;
+    order : Nat;
+    title : Text
+  };
+type List__415060402<T> = List__790383201<T>;
+type List__790383201<T> =
+  {
+    var blockIndex : Nat__490723111;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__490723111
+  };
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type ModuleId__167356749 = ModuleId__206552371;
+type ModuleId__206552371 = Nat;
+type Module__10487522 =
+  {description : Text; id : ModuleId__167356749; order : Nat; title : Text};
+type Module__993256748 = Module__10487522;
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type OldCertificate__546286892 =
+  {
+    completedAt : Timestamp__475544177;
+    courseTitle : Text;
+    id : Text;
+    issuedAt : Timestamp__475544177;
+    learnerName : Text;
+    userId : UserId__189245808
+  };
+type OldLesson__895252987 =
+  {
+    content : Text;
+    description : Text;
+    difficulty : Difficulty__149633172;
+    durationMinutes : Nat;
+    id : LessonId__630646416;
+    moduleId : ModuleId__167356749;
+    order : Nat;
+    title : Text
+  };
+type Timestamp__301639476 = Int;
+type Timestamp__475544177 = Timestamp__301639476;
+type UserId__158757552 = Principal;
+type UserId__189245808 = UserId__158757552;
+type UserId__594718993 = UserId__189245808;
+actor ({
+  in certificates :
+    Map__605269027<UserId__189245808, OldCertificate__546286892>;
+  stable completions :
+    {
+      var root :
+        Node__46230540<UserId__594718993,
+                        List__415060402<LessonCompletion__216170458>>;
+      var size : Nat__490723111
+    };
+  stable enrollments :
+    {
+      var root : Node__46230540<UserId__594718993, Enrollment__143286211>;
+      var size : Nat__490723111
+    };
+  in lessons : List__415060402<OldLesson__895252987>;
+  stable modules :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Module__993256748]];
+      var elementIndex : Nat__490723111
+    }
+}, {
+  stable certificates :
+    {
+      var root : Node__46230540<UserId__594718993, Certificate__394144600>;
+      var size : Nat__490723111
+    };
+  stable completions :
+    {
+      var root :
+        Node__46230540<UserId__594718993,
+                        List__415060402<LessonCompletion__216170458>>;
+      var size : Nat__490723111
+    };
+  stable enrollments :
+    {
+      var root : Node__46230540<UserId__594718993, Enrollment__143286211>;
+      var size : Nat__490723111
+    };
+  stable lessons :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Lesson__322158826]];
+      var elementIndex : Nat__490723111
+    };
+  stable modules :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Module__993256748]];
+      var elementIndex : Nat__490723111
+    }
+});

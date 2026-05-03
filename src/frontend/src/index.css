@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "General Sans";
+    --font-body: "General Sans";
+    --font-mono: "JetBrains Mono";
+    --radius: 0.5rem;
+
+    --background: 0.97 0.01 0;
+    --foreground: 0.15 0.02 280;
+    --card: 0.99 0 0;
+    --card-foreground: 0.15 0.02 280;
+    --popover: 0.99 0 0;
+    --popover-foreground: 0.15 0.02 280;
+
+    --primary: 0.58 0.22 195;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.52 0.18 282;
+    --secondary-foreground: 0.98 0 0;
+    --muted: 0.88 0.02 0;
+    --muted-foreground: 0.5 0.01 280;
+
+    --accent: 0.72 0.19 40;
+    --accent-foreground: 0.15 0.02 280;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.92 0.01 0;
+    --input: 0.94 0.01 0;
+    --ring: 0.58 0.22 195;
+
+    --chart-1: 0.58 0.22 195;
+    --chart-2: 0.52 0.18 282;
+    --chart-3: 0.72 0.19 40;
+    --chart-4: 0.65 0.19 40;
+    --chart-5: 0.72 0.15 332;
+
+    --sidebar: 0.96 0.01 0;
+    --sidebar-foreground: 0.15 0.02 280;
+    --sidebar-primary: 0.58 0.22 195;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.72 0.19 40;
+    --sidebar-accent-foreground: 0.15 0.02 280;
+    --sidebar-border: 0.92 0.01 0;
+    --sidebar-ring: 0.58 0.22 195;
+
+    --db-erd: 0.52 0.18 282;
+    --db-hl: 0.72 0.19 40;
+    --db-hl-foreground: 0.15 0.02 280;
+    --db-sql: 0.58 0.22 195;
+    --db-sql-foreground: 0.98 0 0;
+    --db-table: 0.88 0.02 0;
+  }
+
+  .dark {
+    --background: 0.08 0.01 280;
+    --foreground: 0.94 0.02 280;
+    --card: 0.14 0.01 280;
+    --card-foreground: 0.94 0.02 280;
+    --popover: 0.17 0.01 280;
+    --popover-foreground: 0.94 0.02 280;
+
+    --primary: 0.64 0.22 195;
+    --primary-foreground: 0.08 0.01 280;
+
+    --secondary: 0.58 0.2 282;
+    --secondary-foreground: 0.94 0.02 280;
+    --muted: 0.22 0.01 280;
+    --muted-foreground: 0.58 0.02 280;
+
+    --accent: 0.68 0.21 40;
+    --accent-foreground: 0.08 0.01 280;
+
+    --destructive: 0.65 0.19 22;
+    --destructive-foreground: 0.08 0.01 280;
+
+    --border: 0.2 0.01 280;
+    --input: 0.2 0.01 280;
+    --ring: 0.64 0.22 195;
+
+    --chart-1: 0.64 0.22 195;
+    --chart-2: 0.58 0.2 282;
+    --chart-3: 0.68 0.21 40;
+    --chart-4: 0.65 0.19 40;
+    --chart-5: 0.75 0.14 332;
+
+    --db-sql: 0.65 0.2 195;
+    --db-sql-foreground: 0.94 0.02 280;
+    --db-hl: 0.7 0.22 40;
+    --db-hl-foreground: 0.08 0.01 280;
+    --db-erd: 0.6 0.12 282;
+    --db-table: 0.18 0.01 280;
+
+    --sidebar: 0.12 0.01 280;
+    --sidebar-foreground: 0.94 0.02 280;
+    --sidebar-primary: 0.64 0.22 195;
+    --sidebar-primary-foreground: 0.08 0.01 280;
+    --sidebar-accent: 0.68 0.21 40;
+    --sidebar-accent-foreground: 0.94 0.02 280;
+    --sidebar-border: 0.2 0.01 280;
+    --sidebar-ring: 0.64 0.22 195;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400;
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .elevation-subtle {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+  }
+
+  .elevation-card {
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .elevation-modal {
+    box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .gradient-primary {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--primary)),
+      oklch(var(--secondary))
+    );
+  }
+
+  .text-display {
+    @apply font-display text-3xl font-bold tracking-tighter;
+  }
+
+  .text-heading {
+    @apply font-display text-2xl font-bold;
+  }
+
+  .db-sql-block {
+    @apply bg-db-sql/10 border border-db-sql/30 rounded-md p-3 font-mono text-sm;
+  }
+
+  .db-hl-badge {
+    @apply inline-block bg-db-hl text-db-hl-foreground px-2.5 py-1 rounded-sm text-xs font-bold;
+  }
+
+  .db-erd-node {
+    @apply border-2 border-db-erd bg-db-erd/5 rounded-md p-4;
+  }
+
+  .db-table-row {
+    @apply bg-db-table/40 border-b border-db-table/50;
+  }
+  .text-subheading {
+    @apply font-body text-lg font-semibold;
+  }
+}
+
+/* Certificate color tokens — used for print-fidelity gold design */
+:root {
+  --cert-gold: #ffd700;
+  --cert-gold-deep: #ff8f00;
+  --cert-gold-mid: #ffeb3b;
+  --cert-gold-muted: #e5b800;
+  --cert-bg-start: #0f1630;
+  --cert-bg-mid: #1a1060;
+  --cert-overlay-gold: rgba(255, 215, 0, 0.04);
+}
+
+/* Print styles for certificate */
+@media print {
+  header,
+  footer,
+  nav,
+  aside,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+    color: black;
+  }
+  [data-ocid="certificate.document"] {
+    border: 2px solid #999;
+    box-shadow: none;
+  }
+}
+
+.prose-lesson {
+  @apply leading-7;
+}
